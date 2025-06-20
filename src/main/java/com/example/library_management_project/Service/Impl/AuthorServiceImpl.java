@@ -1,7 +1,7 @@
 package com.example.library_management_project.Service.Impl;
 
-import com.example.library_management_project.DTO.Request.CreateAuthorRequestDTO;
-import com.example.library_management_project.DTO.Request.CreateBookRequestDTO;
+import com.example.library_management_project.dto.author.AuthorResponseDTO;
+import com.example.library_management_project.dto.author.CreateAuthorDTO;
 import com.example.library_management_project.Exceptions.AuthorNotFoundException;
 import com.example.library_management_project.Model.Author;
 import com.example.library_management_project.Repository.AuthorRepository;
@@ -17,14 +17,21 @@ public class AuthorServiceImpl implements AuthorService {
     private final AuthorRepository authorRepository;
 
     @Override
-    public void createAuthor(CreateAuthorRequestDTO createAuthorRequestDTO) {
+    public AuthorResponseDTO createAuthor(CreateAuthorDTO createAuthorDTO) {
         Author author = new Author();
-        author.setName(createAuthorRequestDTO.getName());
-        author.setBio(createAuthorRequestDTO.getBio());
-        authorRepository.save(author);
+        author.setName(createAuthorDTO.getName());
+        author.setBio(createAuthorDTO.getBio());
+        author.setEmail(createAuthorDTO.getEmail());
+        Author savedAuthor = authorRepository.save(author);
+        return new AuthorResponseDTO(
+                savedAuthor.getId(),
+                savedAuthor.getName(),
+                savedAuthor.getBio(),
+                savedAuthor.getEmail()
+        );
     }
 
-    public void updateAuthor(Long id, CreateAuthorRequestDTO createAuthorRequestDTO) throws AuthorNotFoundException {
+    public void updateAuthor(Long id, CreateAuthorDTO createAuthorRequestDTO) throws AuthorNotFoundException {
         Optional<Author> authorOptional = authorRepository.findById(id);
         if (authorOptional.isEmpty()) {
             throw new AuthorNotFoundException();

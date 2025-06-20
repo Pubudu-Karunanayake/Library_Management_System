@@ -1,4 +1,4 @@
-package com.example.library_management_project.DTO.Response;
+package com.example.library_management_project.dto.common;
 
 import lombok.Data;
 

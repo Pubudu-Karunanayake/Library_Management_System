@@ -1,7 +1,6 @@
 package com.example.library_management_project.Exceptions;
 
-import com.example.library_management_project.DTO.Response.ErrorResponseDTO;
-import org.springframework.data.crossstore.ChangeSetPersister;
+import com.example.library_management_project.dto.common.ErrorResponseDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;

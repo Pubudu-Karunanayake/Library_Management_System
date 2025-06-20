@@ -1,10 +1,11 @@
 package com.example.library_management_project.Service;
 
-import com.example.library_management_project.DTO.Request.CreateAuthorRequestDTO;
-import com.example.library_management_project.Exceptions.AuthorNotFoundException;
 import com.example.library_management_project.Model.Author;
+import com.example.library_management_project.dto.author.AuthorResponseDTO;
+import com.example.library_management_project.dto.author.CreateAuthorDTO;
+import com.example.library_management_project.Exceptions.AuthorNotFoundException;
 
 public interface AuthorService {
-    void createAuthor(CreateAuthorRequestDTO createAuthorRequestDTO);
-    void updateAuthor(Long id,CreateAuthorRequestDTO createAuthorRequestDTO) throws AuthorNotFoundException;
+    AuthorResponseDTO createAuthor(CreateAuthorDTO createAuthorDTO);
+    void updateAuthor(Long id, CreateAuthorDTO createAuthorRequestDTO) throws AuthorNotFoundException;
 }

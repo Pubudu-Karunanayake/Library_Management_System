@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -15,11 +16,11 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
     private Long id;
-
-    @NotNull(message = "Member name is essential")
     private String name;
-
     private String email;
+    private String address;
+    private String phone;
+    private LocalDate birthday;
 
     @OneToMany(mappedBy = "member")
     private List<BorrowBook> borrowedBooks;
